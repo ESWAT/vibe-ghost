@@ -1,13 +1,32 @@
+:root {
+  --primary: #000000;
+  --secondary: #333333;
+  --accent: #0070f3;
+  --accent-gradient: linear-gradient(to right, #0070f3, #7928ca);
+  --background: #fafafa;
+  --card-bg: #ffffff;
+  --text: #000000;
+  --text-secondary: #666666;
+  --success: #0070f3;
+  --error: #ff4545;
+  --warning: #ffb224;
+  --border-radius: 12px;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+    'Helvetica Neue', Arial, sans-serif;
+  --transition: all 0.2s ease;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
 /* Basic Reset & Body */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f0f8ff; /* Light blue background */
-  color: #333;
+  background-color: var(--background);
+  color: var(--text);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,44 +35,50 @@ body {
 }
 
 #root {
-    width: 100%;
-    max-width: 600px; /* Max width for larger screens */
-    padding: 1rem;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 /* App Structure */
 .App {
-  background-color: #ffffff;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border: 5px solid #f0a04b; /* Orange border */
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .App-header {
-  background-color: #4a90e2; /* Bright blue header */
-  color: white;
-  padding: 10px 0;
-  border-radius: 10px 10px 0 0;
-  margin: -20px -20px 20px -20px; /* Extend to edges */
+  margin-bottom: 24px;
 }
 
 .App-header h1 {
   margin: 0;
-  font-size: 1.8em;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  font-size: 2rem;
+  font-weight: 800;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 /* Game Container */
 .game-container {
-  padding: 20px;
-  background-color: #fffacd; /* Lemon chiffon */
-  border-radius: 10px;
+  padding: 24px;
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
   margin-top: 20px;
-  border: 3px dashed #ff6347; /* Tomato dashed border */
-  transition: background-color 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.game-container:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Score and Timer */
@@ -61,127 +86,144 @@ body {
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #555;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
 }
 
 .score {
-    color: #228b22; /* Forest green */
+  color: var(--success);
 }
 
 .timer {
-    color: #ff4500; /* Orange red */
-    transition: transform 0.2s ease;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
 }
 
 .timer.low-time {
-    color: #dc143c; /* Crimson */
-    font-weight: bolder;
-    transform: scale(1.1);
-    animation: pulse 1s infinite;
+  color: var(--error);
+  font-weight: 700;
+  animation: pulse 1s infinite;
+}
+
+/* Timer Progress Bar */
+.timer-bar {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.timer-progress {
+  height: 100%;
+  background: var(--accent-gradient);
+  width: 100%;
+  transition: width 1s linear;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1.1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1.1); }
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
-
 
 /* Word Display */
 .word-display {
   margin-bottom: 25px;
-  min-height: 100px; /* Ensure space is reserved */
+  min-height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #e0ffff; /* Light cyan */
-  padding: 15px;
-  border-radius: 8px;
-  border: 2px solid #4682b4; /* Steel blue */
+  background-color: rgba(0, 112, 243, 0.05);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 112, 243, 0.1);
 }
 
 .korean-word {
-  font-size: 2.5em; /* Larger Korean text */
-  font-weight: bold;
-  color: #000080; /* Navy */
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary);
   margin: 5px 0;
   line-height: 1.2;
 }
 
 .korean-word.prompt {
-    animation: bounceIn 0.5s ease;
+  animation: fadeIn 0.5s ease;
 }
 
-@keyframes bounceIn {
-  0% { transform: scale(0.5); opacity: 0; }
-  60% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); }
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
-
 
 .english-translation {
-  font-size: 1.3em;
-  color: #4682b4; /* Steel blue */
+  font-size: 1.2rem;
+  color: var(--text-secondary);
   margin-top: 10px;
-  font-style: italic;
 }
 
 /* Input Field */
 .typing-input {
-  width: calc(100% - 24px); /* Full width minus padding */
-  padding: 12px;
-  font-size: 1.5em;
-  border: 3px solid #f0a04b; /* Orange border */
-  border-radius: 8px;
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1.2rem;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--border-radius);
   text-align: center;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
   margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
 }
 
 .typing-input:focus {
   outline: none;
-  border-color: #4a90e2; /* Blue border on focus */
-  box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
 }
 
 /* Feedback Indicator */
 .feedback-indicator {
-    min-height: 30px; /* Reserve space */
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-top: 15px;
+  min-height: 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 15px;
+  transition: var(--transition);
 }
 
 /* Feedback Styling */
 .game-container.correct .word-display {
-    background-color: #90ee90; /* Light green */
-    border-color: #228b22; /* Forest green */
+  background-color: rgba(0, 112, 243, 0.1);
+  border-color: rgba(0, 112, 243, 0.2);
 }
+
 .game-container.correct .feedback-indicator {
-    color: #228b22; /* Forest green */
-    animation: pop 0.3s ease-out;
+  color: var(--success);
+  animation: fadeIn 0.3s ease-out;
 }
 
 .game-container.incorrect .typing-input {
-    border-color: #dc143c; /* Crimson */
-    animation: shake 0.5s;
+  border-color: var(--error);
+  animation: shake 0.5s;
 }
+
 .game-container.incorrect .feedback-indicator {
-    color: #dc143c; /* Crimson */
+  color: var(--error);
 }
 
 .game-container.timeout .word-display {
-    background-color: #f0e68c; /* Khaki */
-    border-color: #bdb76b; /* Dark khaki */
-}
-.game-container.timeout .feedback-indicator {
-    color: #ff4500; /* Orange red */
+  background-color: rgba(255, 178, 36, 0.1);
+  border-color: rgba(255, 178, 36, 0.2);
 }
 
+.game-container.timeout .feedback-indicator {
+  color: var(--warning);
+}
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
@@ -189,88 +231,89 @@ body {
   20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
-@keyframes pop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-
 /* Game Over Screen */
 .game-over {
   text-align: center;
-  background-color: #ffdab9; /* Peach puff */
-  border-color: #ff7f50; /* Coral */
+  background-color: var(--card-bg);
+  border-color: rgba(0, 0, 0, 0.08);
+  padding: 40px 24px;
 }
 
 .game-over h2 {
-  color: #d2691e; /* Chocolate */
-  font-size: 2em;
+  color: var(--primary);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 16px;
 }
 
 .game-over p {
-  font-size: 1.5em;
-  color: #8b4513; /* Saddle brown */
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 24px 0;
 }
 
 .game-over button {
-  padding: 10px 20px;
-  font-size: 1.2em;
+  padding: 12px 24px;
+  font-size: 1rem;
   color: white;
-  background-color: #4a90e2; /* Bright blue */
+  background: var(--accent-gradient);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-  border: 2px solid #4169e1; /* Royal blue */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: var(--transition);
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
 }
 
 .game-over button:hover {
-  background-color: #357abd; /* Darker blue */
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.game-over button:active {
+  transform: translateY(0);
 }
 
 /* Responsive Design */
 @media (max-width: 600px) {
   .App {
-    padding: 15px;
-    border-width: 3px;
+    padding: 20px;
   }
+  
   .App-header h1 {
-    font-size: 1.5em;
+    font-size: 1.8rem;
   }
+  
   .game-container {
-    padding: 15px;
+    padding: 20px;
   }
-  .score-timer {
-    font-size: 1em;
-    margin-bottom: 20px;
-  }
+  
   .korean-word {
-    font-size: 2em;
+    font-size: 2.5rem;
   }
-  .english-translation {
-    font-size: 1.1em;
-  }
+  
   .typing-input {
-    font-size: 1.2em;
-    padding: 10px;
-    width: calc(100% - 20px); /* Adjust width for padding */
+    font-size: 1.1rem;
+    padding: 12px;
   }
-   .feedback-indicator {
-    font-size: 1.2em;
+  
+  .feedback-indicator {
+    font-size: 1.1rem;
   }
 }
 
 @media (max-width: 400px) {
-    .korean-word {
-        font-size: 1.8em;
-    }
-    .typing-input {
-        font-size: 1.1em;
-    }
-     .feedback-indicator {
-        font-size: 1.1em;
-    }
+  .korean-word {
+    font-size: 2rem;
+  }
+  
+  .typing-input {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  
+  .feedback-indicator {
+    font-size: 1rem;
+  }
 }

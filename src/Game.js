@@ -123,8 +123,8 @@ function Game() {
   if (isGameOver) {
     return (
       <div className="game-container game-over">
-        <h2>Game Over!</h2>
-        <p>Final Score: {score}</p>
+        <h2>Game Over</h2>
+        <p>{score}</p>
         <button onClick={resetGame}>Play Again</button>
       </div>
     );
@@ -135,6 +135,13 @@ function Game() {
       <div className="score-timer">
         <span className="score">Score: {score}</span>
         <span className={`timer ${timeLeft <= 2 ? 'low-time' : ''}`}>Time: {timeLeft}s</span>
+      </div>
+      
+      <div className="timer-bar">
+        <div 
+          className="timer-progress" 
+          style={{ width: `${(timeLeft / TIME_LIMIT) * 100}%` }}
+        ></div>
       </div>
 
       <div className="word-display">
@@ -165,9 +172,9 @@ function Game() {
         />
       )}
        <div className="feedback-indicator">
-            {feedback === 'correct' && '⭐ Correct! ⭐'}
-            {feedback === 'incorrect' && '❌ Try Again! ❌'}
-            {feedback === 'timeout' && '⏰ Timeout! ⏰'}
+            {feedback === 'correct' && 'Correct!'}
+            {feedback === 'incorrect' && 'Try Again!'}
+            {feedback === 'timeout' && 'Time\'s up!'}
        </div>
     </div>
   );
