@@ -7,9 +7,11 @@
     "react-dom": "^18.3.1"
   },
   "scripts": {
-    "start": "echo \"Run 'npm install -g serve && serve -s build' after building\"",
-    "build": "echo \"You need a build tool like create-react-app or Vite to build. Example: npx create-react-app . --template=minimal then npm run build\"",
-    "test": "echo \"No test specified\""
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
