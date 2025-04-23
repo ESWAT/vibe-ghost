@@ -1,22 +1,23 @@
 :root {
-  --primary: #000000;
-  --secondary: #333333;
+  --primary: #ffffff;
+  --secondary: #a0a0a0;
   --accent: #0070f3;
   --accent-gradient: linear-gradient(to right, #0070f3, #7928ca);
-  --background: #fafafa;
-  --card-bg: #ffffff;
-  --text: #000000;
-  --text-secondary: #666666;
-  --success: #0070f3;
+  --background: #121212;
+  --card-bg: #1e1e1e;
+  --text: #ffffff;
+  --text-secondary: #a0a0a0;
+  --success: #4caf50;
   --error: #ff4545;
   --warning: #ffb224;
   --border-radius: 12px;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
     'Helvetica Neue', Arial, sans-serif;
   --transition: all 0.2s ease;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.03);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25), 0 10px 15px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Basic Reset & Body */
@@ -32,22 +33,28 @@ body {
   align-items: center;
   min-height: 100vh;
   text-align: center;
+  padding: 0;
 }
 
 #root {
   width: 100%;
   max-width: 600px;
-  padding: 1rem;
+  padding: 1.5rem;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* App Structure */
 .App {
   background-color: var(--card-bg);
   border-radius: var(--border-radius);
-  padding: 24px;
+  padding: 28px;
   box-shadow: var(--shadow-md);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .App-header {
@@ -67,13 +74,15 @@ body {
 
 /* Game Container */
 .game-container {
-  padding: 24px;
-  background-color: var(--card-bg);
+  padding: 28px;
+  background-color: rgba(30, 30, 30, 0.6);
   border-radius: var(--border-radius);
   margin-top: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: var(--shadow-sm);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .game-container:hover {
@@ -137,10 +146,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 112, 243, 0.05);
-  padding: 20px;
+  background-color: rgba(0, 112, 243, 0.1);
+  padding: 24px;
   border-radius: var(--border-radius);
-  border: 1px solid rgba(0, 112, 243, 0.1);
+  border: 1px solid rgba(0, 112, 243, 0.2);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .korean-word {
@@ -171,20 +182,21 @@ body {
   width: 100%;
   padding: 14px 16px;
   font-size: 1.2rem;
-  border: 2px solid rgba(0, 0, 0, 0.08);
+  border: 2px solid var(--border-color);
   border-radius: var(--border-radius);
   text-align: center;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   margin-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background-color: rgba(20, 20, 20, 0.8);
+  color: var(--text);
+  box-sizing: border-box;
 }
 
 .typing-input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.3);
 }
 
 /* Feedback Indicator */
@@ -198,8 +210,8 @@ body {
 
 /* Feedback Styling */
 .game-container.correct .word-display {
-  background-color: rgba(0, 112, 243, 0.1);
-  border-color: rgba(0, 112, 243, 0.2);
+  background-color: rgba(76, 175, 80, 0.15);
+  border-color: rgba(76, 175, 80, 0.3);
 }
 
 .game-container.correct .feedback-indicator {
@@ -217,8 +229,8 @@ body {
 }
 
 .game-container.timeout .word-display {
-  background-color: rgba(255, 178, 36, 0.1);
-  border-color: rgba(255, 178, 36, 0.2);
+  background-color: rgba(255, 178, 36, 0.15);
+  border-color: rgba(255, 178, 36, 0.3);
 }
 
 .game-container.timeout .feedback-indicator {
@@ -236,8 +248,10 @@ body {
 .game-over {
   text-align: center;
   background-color: var(--card-bg);
-  border-color: rgba(0, 0, 0, 0.08);
-  padding: 40px 24px;
+  border-color: var(--border-color);
+  padding: 40px 28px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .game-over h2 {
