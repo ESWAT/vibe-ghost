@@ -4,7 +4,8 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE).then(cache => {
       console.log("Installing service worker");
-      return cache.addAll([
+      // Explicitly cache assets - IMPORTANT!
+      cache.addAll([
         '/index.html',
         '/static/js/bundle.js', // Adjust if your bundle filename is different
         '/static/css/main.chunk.css', // Adjust if your main CSS filename is different
