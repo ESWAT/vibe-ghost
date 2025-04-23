@@ -2,14 +2,62 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Fun Korean Typing Test Game" />
     <title>Hangul Speed Typer</title>
-    <link rel="stylesheet" href="%PUBLIC_URL%/styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="App">
+        <header class="App-header">
+          <h1>Hangul Speed Typer</h1>
+        </header>
+        <main>
+          <div id="game-container" class="game-container">
+            <div class="score-timer">
+              <span class="score">Score: 0</span>
+              <span class="timer">Time: 5s</span>
+            </div>
+            
+            <div class="timer-bar">
+              <div class="timer-progress" style="width: 100%"></div>
+            </div>
+
+            <div class="word-display">
+              <p class="korean-word prompt" id="korean-word"></p>
+              <p class="english-translation" id="english-translation" style="display: none;"></p>
+            </div>
+
+            <input
+              id="typing-input"
+              type="text"
+              value=""
+              placeholder="Type here..."
+              class="typing-input"
+              lang="ko"
+              autocapitalize="none"
+              autocorrect="off"
+              spellcheck="false"
+              autofocus
+            />
+            
+            <div class="feedback-indicator" id="feedback"></div>
+          </div>
+          
+          <div id="game-over" class="game-container game-over" style="display: none;">
+            <h2>Game Over</h2>
+            <p id="final-score">0</p>
+            <button id="play-again">Play Again</button>
+          </div>
+        </main>
+      </div>
+    </div>
+    
+    <script src="wordlist.js"></script>
+    <script src="game.js"></script>
   </body>
 </html>
