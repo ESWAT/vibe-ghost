@@ -1,0 +1,276 @@
+/* Basic Reset & Body */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f8ff; /* Light blue background */
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+#root {
+    width: 100%;
+    max-width: 600px; /* Max width for larger screens */
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* App Structure */
+.App {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 5px solid #f0a04b; /* Orange border */
+}
+
+.App-header {
+  background-color: #4a90e2; /* Bright blue header */
+  color: white;
+  padding: 10px 0;
+  border-radius: 10px 10px 0 0;
+  margin: -20px -20px 20px -20px; /* Extend to edges */
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Game Container */
+.game-container {
+  padding: 20px;
+  background-color: #fffacd; /* Lemon chiffon */
+  border-radius: 10px;
+  margin-top: 20px;
+  border: 3px dashed #ff6347; /* Tomato dashed border */
+  transition: background-color 0.3s ease;
+}
+
+/* Score and Timer */
+.score-timer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #555;
+}
+
+.score {
+    color: #228b22; /* Forest green */
+}
+
+.timer {
+    color: #ff4500; /* Orange red */
+    transition: transform 0.2s ease;
+}
+
+.timer.low-time {
+    color: #dc143c; /* Crimson */
+    font-weight: bolder;
+    transform: scale(1.1);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1.1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1.1); }
+}
+
+
+/* Word Display */
+.word-display {
+  margin-bottom: 25px;
+  min-height: 100px; /* Ensure space is reserved */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0ffff; /* Light cyan */
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid #4682b4; /* Steel blue */
+}
+
+.korean-word {
+  font-size: 2.5em; /* Larger Korean text */
+  font-weight: bold;
+  color: #000080; /* Navy */
+  margin: 5px 0;
+  line-height: 1.2;
+}
+
+.korean-word.prompt {
+    animation: bounceIn 0.5s ease;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+
+.english-translation {
+  font-size: 1.3em;
+  color: #4682b4; /* Steel blue */
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* Input Field */
+.typing-input {
+  width: calc(100% - 24px); /* Full width minus padding */
+  padding: 12px;
+  font-size: 1.5em;
+  border: 3px solid #f0a04b; /* Orange border */
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.typing-input:focus {
+  outline: none;
+  border-color: #4a90e2; /* Blue border on focus */
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+}
+
+/* Feedback Indicator */
+.feedback-indicator {
+    min-height: 30px; /* Reserve space */
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Feedback Styling */
+.game-container.correct .word-display {
+    background-color: #90ee90; /* Light green */
+    border-color: #228b22; /* Forest green */
+}
+.game-container.correct .feedback-indicator {
+    color: #228b22; /* Forest green */
+    animation: pop 0.3s ease-out;
+}
+
+.game-container.incorrect .typing-input {
+    border-color: #dc143c; /* Crimson */
+    animation: shake 0.5s;
+}
+.game-container.incorrect .feedback-indicator {
+    color: #dc143c; /* Crimson */
+}
+
+.game-container.timeout .word-display {
+    background-color: #f0e68c; /* Khaki */
+    border-color: #bdb76b; /* Dark khaki */
+}
+.game-container.timeout .feedback-indicator {
+    color: #ff4500; /* Orange red */
+}
+
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+
+/* Game Over Screen */
+.game-over {
+  text-align: center;
+  background-color: #ffdab9; /* Peach puff */
+  border-color: #ff7f50; /* Coral */
+}
+
+.game-over h2 {
+  color: #d2691e; /* Chocolate */
+  font-size: 2em;
+}
+
+.game-over p {
+  font-size: 1.5em;
+  color: #8b4513; /* Saddle brown */
+}
+
+.game-over button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: white;
+  background-color: #4a90e2; /* Bright blue */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  border: 2px solid #4169e1; /* Royal blue */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.game-over button:hover {
+  background-color: #357abd; /* Darker blue */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .App {
+    padding: 15px;
+    border-width: 3px;
+  }
+  .App-header h1 {
+    font-size: 1.5em;
+  }
+  .game-container {
+    padding: 15px;
+  }
+  .score-timer {
+    font-size: 1em;
+    margin-bottom: 20px;
+  }
+  .korean-word {
+    font-size: 2em;
+  }
+  .english-translation {
+    font-size: 1.1em;
+  }
+  .typing-input {
+    font-size: 1.2em;
+    padding: 10px;
+    width: calc(100% - 20px); /* Adjust width for padding */
+  }
+   .feedback-indicator {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 400px) {
+    .korean-word {
+        font-size: 1.8em;
+    }
+    .typing-input {
+        font-size: 1.1em;
+    }
+     .feedback-indicator {
+        font-size: 1.1em;
+    }
+}

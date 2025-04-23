@@ -1,0 +1,32 @@
+{
+  "name": "hangul-typer-pwa",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "scripts": {
+    "start": "echo \"Run 'npm install -g serve && serve -s build' after building\"",
+    "build": "echo \"You need a build tool like create-react-app or Vite to build. Example: npx create-react-app . --template=minimal then npm run build\"",
+    "test": "echo \"No test specified\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
